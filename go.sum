@@ -28,8 +28,8 @@ github.com/goccy/go-json v0.10.2/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MG
 github.com/google/go-cmp v0.5.5 h1:Khx7svrCpmxxtHBq5j2mp/xVjsi8hQMfNLvJFAlrGgU=
 github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
-github.com/isaui/go-support-id-error v1.0.0 h1:ZtHgESFRL9KJQ5r9lRnoGHKK2DpsEkC/kW5jiK9oqgY=
-github.com/isaui/go-support-id-error v1.0.0/go.mod h1:j58ELoaK7AsWBF5O9OKNhRvUuu4nknssyKwiqxk/Gfk=
+github.com/isaui/go-support-id-error v1.1.0 h1:+79c0VZnTOk9g9Y5tfxSVKE5cyfw16jkHmCYEgeT2TU=
+github.com/isaui/go-support-id-error v1.1.0/go.mod h1:j58ELoaK7AsWBF5O9OKNhRvUuu4nknssyKwiqxk/Gfk=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=

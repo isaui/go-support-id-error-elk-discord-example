@@ -4,7 +4,7 @@ go 1.24.4
 
 require (
 	github.com/gin-gonic/gin v1.10.0
-	github.com/isaui/go-support-id-error v1.0.0
+	github.com/isaui/go-support-id-error v1.1.0
 	github.com/joho/godotenv v1.5.1
 )
 

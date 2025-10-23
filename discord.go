@@ -90,8 +90,18 @@ func (d *DiscordWebhook) SendErrorNotification(err *errorid.ErrorWithID) {
 		})
 	}
 
-	// Note: Stack trace is already included in Details by the library
-	// when IncludeStackTrace: true is set in config
+	// Add stack trace if available (separate from details in v1.1.0+)
+	if err.StackTrace != "" {
+		stackTrace := err.StackTrace
+		if len(stackTrace) > 900 {
+			stackTrace = stackTrace[:900] + "..."
+		}
+		embed.Fields = append(embed.Fields, Field{
+			Name:   "Stack Trace",
+			Value:  "```\n" + stackTrace + "\n```",
+			Inline: false,
+		})
+	}
 
 	message := DiscordMessage{
 		Embeds: []Embed{embed},

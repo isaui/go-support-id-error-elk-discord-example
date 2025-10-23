@@ -28,12 +28,16 @@ func NewELKLogger(elkURL string) *ELKLogger {
 }
 
 // Error implements the errorid.Logger interface
-func (l *ELKLogger) Error(errorID string, err error, context string, details map[string]interface{}) {
+func (l *ELKLogger) Error(errorID string, err error, context string, details map[string]interface{}, stackTrace string) {
 	// Log to stderr
-	fmt.Fprintf(os.Stderr, "[ERROR-ID] ID=%s | Context=%s | Error=%v\n", errorID, context, err)
+	if stackTrace != "" {
+		fmt.Fprintf(os.Stderr, "[ERROR-ID] ID=%s | Context=%s | Error=%v | StackTrace: %s\n", errorID, context, err, stackTrace)
+	} else {
+		fmt.Fprintf(os.Stderr, "[ERROR-ID] ID=%s | Context=%s | Error=%v\n", errorID, context, err)
+	}
 	
 	// Send to ELK with structured data
-	go l.sendStructuredError(errorID, err, context, details)
+	go l.sendStructuredError(errorID, err, context, details, stackTrace)
 }
 
 // Info implements the errorid.Logger interface
@@ -43,7 +47,7 @@ func (l *ELKLogger) Info(msg string) {
 }
 
 // sendStructuredError sends structured error data to ELK
-func (l *ELKLogger) sendStructuredError(id string, err error, context string, details map[string]interface{}) {
+func (l *ELKLogger) sendStructuredError(id string, err error, context string, details map[string]interface{}, stackTrace string) {
 	if l.elkURL == "" {
 		return
 	}
@@ -58,6 +62,11 @@ func (l *ELKLogger) sendStructuredError(id string, err error, context string, de
 		"service":     "go-support-id-example",
 		"level":       "error",
 		"environment": os.Getenv("ENVIRONMENT"),
+	}
+
+	// Add stack trace if available
+	if stackTrace != "" {
+		logEntry["stack_trace"] = stackTrace
 	}
 
 	// Add all details as separate fields for better filtering
